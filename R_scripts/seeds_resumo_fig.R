@@ -105,6 +105,72 @@ ggarrange?
 
 
 ## agora pra fazer a figura 2####
+#essa figura é a antiga fig 3 e 5 juntas. stacked barplots
+# pra isso tenho que fazer 2 dataframes
 
+#primeiro dataframe
+buds<-c("Aunderground", "Aunderground", "Aunderground", "Baerial", "Baerial", "Baerial", "Cbasal", "Cbasal","Cbasal")
+buds1 <- as.factor(buds)
 
+strats<-c("R+PT", "R+PS", "R+P-","R+PT", "R+PS", "R+P-","R+PT", "R+PS", "R+P-" )
+strat1 <-as.factor(strats)
 
+values <- c('0.8', "0.16", "0.04", "0.89", "0.11", "0", "0.75","0.25", "0")
+value1 <-as.numeric(values)
+value1 <- value1*100
+datax <- data.frame(buds1, strat1, value1)
+
+#segundo dataframe
+dorm <- c("dormant", "dormant", "dormant", "non-dormant", "non-dormant", "non-dormant")
+dorm1 <- as.factor(dorm)
+
+strats2<-c("R+PT", "R+PS", "R+P-","R+PT", "R+PS", "R+P-")
+strat2 <-as.factor(strats2)
+
+val <- c("0.56", "0.43", "0", "0.96", "0.04", "0")
+val1 <- as.numeric(val)
+val1 <- val1*100
+
+datay <- data.frame(dorm1, strat2, val1)
+
+#as figuras:
+
+g1 <-ggplot(data=datax, aes(x=buds1, y=value1, fill = strat1,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
+  geom_bar(position="stack", stat="identity")+
+  scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
+  scale_x_discrete(limits=c("Aunderground","Baerial", "Cbasal" ),
+                   labels=c("underground","aerial'", "basal" ))+
+  xlab("") +
+  ylab("Proportion of species") +
+  theme_classic() +
+  theme (axis.text = element_text(size = 7), axis.title=element_text(size=8),
+         axis.text.x=element_text(size=8),
+         panel.grid.major=element_blank(),
+         panel.grid.minor=element_blank(), panel.border=element_blank()) +
+  theme(axis.line.x = element_line(color="black", size = 0), ## to write x and y axis again, ja que removi da borda
+        axis.line.y = element_line(color="black", size = 0))+
+  theme(legend.position="none")
+
+g2 <-ggplot(data=datay, aes(x=dorm1, y=val1, fill = strat2,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
+  geom_bar(position="stack", stat="identity")+
+  scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
+  xlab("") +
+  ylab("Proportion of species") +
+  theme_classic() +
+  theme (axis.text = element_text(size = 7), axis.title=element_text(size=8),
+         axis.text.x=element_text(size=8),
+         panel.grid.major=element_blank(),
+         panel.grid.minor=element_blank(), panel.border=element_blank()) +
+  theme(axis.line.x = element_line(color="black", size = 0), ## to write x and y axis again, ja que removi da borda
+        axis.line.y = element_line(color="black", size = 0))+
+  theme(legend.position="none")
+
+#para usar labels dentro do plot
+library(ggpubr)
+#usando label.x e label.y é melhor que vjust and hjust para ajustar cada label onde vc quer!
+
+png("figs/figura04.png", res = 300, width = 2000, height = 800)
+ggarrange(g1, g2,
+          labels = c("a", "b"),label.x = c(0.14, 0.14),
+          label.y = 1, ncol = 2, nrow = 1)
+dev.off()
