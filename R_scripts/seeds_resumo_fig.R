@@ -1,3 +1,7 @@
+# ============ Figuras (barplots) fev-março-abril 2020 ================
+# planilha e figuras atualizadas do paper Seeds - Zupo et al.
+#=======================================================================
+
 #pacotes
 library(plyr)
 library(ggplot2)
