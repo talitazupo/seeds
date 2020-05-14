@@ -6,6 +6,7 @@
 library(plyr)
 library(ggplot2)
 library(gridExtra)
+library(ggpubr)
 
 ## aqui é pra fazer a figura 1 do paper das seeds! fevereiro 2020####
 #lendo tables
@@ -22,10 +23,9 @@ dorm <- seeds[c(7:8),c(1,3)]
 types <- seeds[c(9:11),c(1,3)]
 survived <- seeds[c(12:14), c(1,3)]
 
-#fazer graficos de barra
-plot(strat$estrategia, strat$prop_ssp)
 
-f1<- ggplot(data=strat, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz a barra ficar mais fina (ou grossa)
+
+f1<- ggplot(data=strat, aes(x= estrategia, y=prop_ssp,  width=.4)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
 
   xlab("") +
@@ -40,7 +40,7 @@ f1<- ggplot(data=strat, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz
   theme(legend.position="none")
 
 
-f2<- ggplot(data=buds, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz a barra ficar mais fina (ou grossa)
+f2<- ggplot(data=buds, aes(x= estrategia, y=prop_ssp,  width=.4)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
 
   xlab("") +
@@ -54,7 +54,7 @@ f2<- ggplot(data=buds, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz 
         axis.line.y = element_line(color='black', size = 0.5, linetype= 'solid'))+
   theme(legend.position="none")
 
-f3<- ggplot(data=dorm, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz a barra ficar mais fina (ou grossa)
+f3<- ggplot(data=dorm, aes(x= estrategia, y=prop_ssp,  width=.4)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
 
   xlab("") +
@@ -68,7 +68,7 @@ f3<- ggplot(data=dorm, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz 
         axis.line.y = element_line(color='black', size = 0.5, linetype= 'solid'))+
   theme(legend.position="none")
 
-f4<- ggplot(data=types, aes(x= estrategia, y=prop_ssp,  width=.2)) + # width faz a barra ficar mais fina (ou grossa)
+f4<- ggplot(data=types, aes(x= estrategia, y=prop_ssp,  width=.4)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
 
   xlab("") +
@@ -90,23 +90,22 @@ png("figs/figura02b.png", res = 300, width = 2400, height = 1200)
 grid.arrange(f1, f2, f3, f4, ncol=2)
 dev.off()
 
-#para adicionar labels dentro do plot
-library(ggpubr)
+#para adicionar labels dentro do plot usando vjust and hjust:
+
 png("figs/figura01.png", res = 300, width = 2400, height = 1200)
 ggarrange(f1, f2, f3, f4,
           labels = c("a", "b", "c", "d"),vjust =  1.0, hjust = -0.5,
           ncol = 2, nrow = 2)
 dev.off()
 
-#usando label.x e label.y é melhor que vjust and hjust para ajustar cada label onde vc quer!
+#agora usando label.x e label.y:
+# que é melhor que vjust and hjust - dá pra ajustar cada label onde vc quer!
 
 png("figs/figura03.png", res = 300, width = 2000, height = 1200)
 ggarrange(f1, f2, f3, f4,
           labels = c("a", "b", "c", "d"),label.x = c(0.14, 0.09, 0.14, 0.09),
           label.y = 1, ncol = 2, nrow = 2)
 dev.off()
-
-ggarrange?
 
 
 ## agora pra fazer a figura 2####
@@ -154,7 +153,8 @@ g1 <-ggplot(data=datax, aes(x=buds1, y=value1, fill = strat1,  width=.5)) + # wi
          panel.grid.minor=element_blank(), panel.border=element_blank()) +
   theme(axis.line.x = element_line(color="black", size = 0), ## to write x and y axis again, ja que removi da borda
         axis.line.y = element_line(color="black", size = 0))+
-  theme(legend.position="none")
+  theme(legend.position="bottom")
+g1<- g1+labs(fill ="")
 
 g2 <-ggplot(data=datay, aes(x=dorm1, y=val1, fill = strat2,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(position="stack", stat="identity")+
@@ -168,20 +168,41 @@ g2 <-ggplot(data=datay, aes(x=dorm1, y=val1, fill = strat2,  width=.5)) + # widt
          panel.grid.minor=element_blank(), panel.border=element_blank()) +
   theme(axis.line.x = element_line(color="black", size = 0), ## to write x and y axis again, ja que removi da borda
         axis.line.y = element_line(color="black", size = 0))+
-  theme(legend.position="none")
-
-#para usar labels dentro do plot
-library(ggpubr)
-#usando label.x e label.y é melhor que vjust and hjust para ajustar cada label onde vc quer!
-
-png("figs/figura04.png", res = 300, width = 2000, height = 800)
-ggarrange(g1, g2,
-          labels = c("a", "b"),label.x = c(0.14, 0.09),
-          label.y = 1, ncol = 2, nrow = 1)
-dev.off()
+  theme(legend.position="bottom")
+g2<-g2+ labs(fill ="")
 
 #e se quiser colocar a legenda?
 #https://stackoverflow.com/questions/43220862/how-can-i-move-the-legend-position-with-grid-arrange
+
+#abaixo temos uma opçao de como pegar a legenda de qq ggplot, mas nao precisei usar nesse caso
+#primeiro:
+library(gridExtra)
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+
+#then get legends from any of the plots
+legend <- g_legend(g2)
+#
+
+#para usar labels dentro do plot - usando label.x e label.y
+library(ggpubr)
+
+#primeira fig sem a legenda
+png("figs/figura04.png", res = 300, width = 2000, height = 800)
+ggarrange(g1, g3,
+          labels = c("a", "b"),label.x = c(0.14, 0.09), ncol=2, nrow=1)
+dev.off()
+
+#segunda fig com a legenda!
+png("figs/figura04B.png", res = 300, width = 2000, height = 800)
+ggarrange(g1, g2, labels = c("a", "b"),label.x = c(0.14, 0.09),
+common.legend = TRUE, legend = "bottom")
+dev.off()
+
 
 # agora a ultima figura####
 
