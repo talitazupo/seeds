@@ -206,6 +206,7 @@ dev.off()
 
 # agora a ultima figura####
 
+survived
 g4<- ggplot(data=survived, aes(x= estrategia, y=prop_ssp,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
 
@@ -223,3 +224,20 @@ g4<- ggplot(data=survived, aes(x= estrategia, y=prop_ssp,  width=.5)) + # width 
 png("figs/figura05.png", res = 300, width = 1200, height = 1000)
 grid.arrange(g4)
 dev.off()
+
+#agora a ultima figura como stacked barplot####
+#primeiro dataframe
+
+exp<-c("100-1 min", "100-1 min", "100-1 min", "100-3 min", "100-3 min", "100-3 min", "200-1 min", "200-1 min","200-1 min")
+exp1 <- as.factor(exp)
+
+strats<-c("stimulated", "tolerated", "decreased","stimulated", "tolerated", "decreased","stimulated", "tolerated", "decreased" )
+strat2 <-as.factor(strats)
+
+values <- c('0.8', "0.16", "0.04", "0.89", "0.11", "0", "0.75","0.25", "0")
+value2 <-as.numeric(values)
+value1 <- value1*100
+data2 <- data.frame(buds1, strat2, value2)
+
+
+#as figuras:
