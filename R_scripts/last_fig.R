@@ -11,24 +11,26 @@ library(ggpubr)
 #lendo tables
 tali <- read.csv(file = "data/last.csv", sep = ";", dec = ".", header = T)
 tali$prop<-tali$prop_sp*100
-germ <- tali[c(1:9),]
-viab <- tali[c(10:18),]
+#germ <- tali[c(1:9),]
+#viab <- tali[c(10:18),]
 
 # o único jeito é fazer com germ e viab separado - 2 figuras lado a lado
-
 f0 <- ggplot() +
   geom_bar(data=tali, aes(y = prop, x = trat, fill = fate), stat="identity",
            position='stack') +
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'), labels = c("Decreased", "Stimulated", "Unchanged"))+
   scale_x_discrete(limits=c("100-1","100-3", "200 -1" ),
-                   labels=c("100 - 1 min","100 - 3 min", "200 - 1 min" ))+
+                   labels=c("100-1 min","100-3 min", "200-1 min" ))+
   xlab("") +
   ylab("Proportion of species") +
   theme_classic() +
+  theme(legend.position="bottom", legend.text = element_text(size =9), legend.key.size = unit(0.35, "cm")) +
    facet_grid( ~ x)
+
+
   f0<- f0+labs(fill ="")
 
-  png("figs/figura6x.png", res = 300, width = 1500, height = 800)
+  png("figs/figura6b.png", res = 300, width = 1500, height = 1000)
   ggarrange(f0,
             common.legend = TRUE, legend = "bottom")
   dev.off()
