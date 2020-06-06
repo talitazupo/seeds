@@ -176,16 +176,16 @@ g2<-g2+ labs(fill ="")
 
 #abaixo temos uma opçao de como pegar a legenda de qq ggplot, mas nao precisei usar nesse caso
 #primeiro:
-library(gridExtra)
-get_legend<-function(myggplot){
-  tmp <- ggplot_gtable(ggplot_build(myggplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  return(legend)
-}
+#library(gridExtra)
+#get_legend<-function(myggplot){
+ # tmp <- ggplot_gtable(ggplot_build(myggplot))
+  #leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  #legend <- tmp$grobs[[leg]]
+  #return(legend)
+#}
 
 #then get legends from any of the plots
-legend <- g_legend(g2)
+#legend <- g_legend(g2)
 #
 
 #para usar labels dentro do plot - usando label.x e label.y
@@ -231,13 +231,35 @@ dev.off()
 exp<-c("100-1 min", "100-1 min", "100-1 min", "100-3 min", "100-3 min", "100-3 min", "200-1 min", "200-1 min","200-1 min")
 exp1 <- as.factor(exp)
 
-strats<-c("stimulated", "tolerated", "decreased","stimulated", "tolerated", "decreased","stimulated", "tolerated", "decreased" )
+strats<-c("Stimulated", "Tolerated", "Decreased","Stimulated", "Tolerated", "Decreased","Stimulated", "Tolerated", "Decreased" )
 strat2 <-as.factor(strats)
 
-values <- c('0.8', "0.16", "0.04", "0.89", "0.11", "0", "0.75","0.25", "0")
+values <- c('0.02', "0.95", "0.02", "0.14", "0.77", "0.09", "0.12","0.34", "0.54")
 value2 <-as.numeric(values)
-value1 <- value1*100
-data2 <- data.frame(buds1, strat2, value2)
+valuex <- value2*100
+data2 <- data.frame(exp1, strat2, valuex)
 
 
-#as figuras:
+#a figura:
+
+g5 <-ggplot(data=data2, aes(x=exp1, y=valuex, fill = strat2,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
+  geom_bar(position="stack", stat="identity")+
+  scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
+  scale_x_discrete(limits=c("100-1 min","100-3 min", "200-1 min" ),
+                   labels=c("100 - 1 min","100 - 3 min", "200 - 1 min" ))+
+    xlab("") +
+  ylab("Proportion of species") +
+  theme_classic() +
+  theme (axis.text = element_text(size = 7), axis.title=element_text(size=8),
+         axis.text.x=element_text(size=8),
+         panel.grid.major=element_blank(),
+         panel.grid.minor=element_blank(), panel.border=element_blank()) +
+  theme(axis.line.x = element_line(color="black", size = 0), ## to write x and y axis again, ja que removi da borda
+        axis.line.y = element_line(color="black", size = 0))+
+  theme(legend.position="bottom", legend.text = element_text(size =9), legend.key.size = unit(0.35, "cm"))
+g5<- g5+labs(fill ="")
+
+png("figs/figura05B.png", res = 300, width = 1200, height = 1000)
+ggarrange(g5,
+          common.legend = TRUE, legend = "bottom")
+dev.off()
