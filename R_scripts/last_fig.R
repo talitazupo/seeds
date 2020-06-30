@@ -20,7 +20,7 @@ f0 <- ggplot() +
            position='stack') +
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'), labels = c("Decreased", "Stimulated", "Unchanged"))+
   scale_x_discrete(limits=c("100-1","100-3", "200 -1" ),
-                   labels=c("100-1 min","100-3 min", "200-1 min" ))+
+                   labels=c("100°C-1 min","100°C-3 min", "200°C-1 min" ))+
   xlab("") +
   ylab("Proportion of species") +
   theme_classic() +
@@ -30,7 +30,7 @@ f0 <- ggplot() +
 
   f0<- f0+labs(fill ="")
 
-  png("figs/figura6b.png", res = 300, width = 1500, height = 1000)
+  png("figs/figura6b.png", res = 300, width = 1700, height = 1100)
   ggarrange(f0,
             common.legend = TRUE, legend = "bottom")
   dev.off()
@@ -59,7 +59,7 @@ f2 <- ggplot(data=viab, aes(x=trat, y=prop_sp, fill = fate,  width=.5)) + # widt
   geom_bar(position="stack", stat="identity")+
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'),labels = c("Decreased", "Stimulated", "Unchanged"))+
   scale_x_discrete(limits=c("100-1","100-3", "200 -1" ),
-                   labels=c("100 - 1 min","100 - 3 min", "200 - 1 min" ))+
+                   labels=c("100°C - 1 min","100°C - 3 min", "200°C - 1 min" ))+
   xlab("") +
   ylab("Proportion of species") +
   theme_classic() +
