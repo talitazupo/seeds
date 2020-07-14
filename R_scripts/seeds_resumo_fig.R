@@ -9,6 +9,7 @@ library(gridExtra)
 library(ggpubr)
 
 ## aqui é pra fazer a figura 1 do paper das seeds! fevereiro 2020####
+
 #lendo tables
 seeds <- read.csv(file = "data/seeds.csv", sep = ";", dec = ".", header = T)
 head(seeds)
@@ -16,15 +17,13 @@ class(seeds$estrategia)
 class(seeds$prop_ssp)
 
 #separando os dados
-
 strat <- seeds[c(1:3),c(1,3)]
 buds <- seeds[c(4:6),c(1,3)]
 dorm <- seeds[c(7:8),c(1,3)]
 types <- seeds[c(9:11),c(1,3)]
 survived <- seeds[c(12:14), c(1,3)]
 
-
-
+# as figuras
 f1<- ggplot(data=strat, aes(x= estrategia, y=prop_ssp,  width=.4)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
 
@@ -83,8 +82,7 @@ f4<- ggplot(data=types, aes(x= estrategia, y=prop_ssp,  width=.4)) + # width faz
   theme(legend.position="none")
 
 
-#salvando todos os graphs em uma figura
-
+#salvando todos os graphs em uma figura:
 
 png("figs/figura02b.png", res = 300, width = 2400, height = 1200)
 grid.arrange(f1, f2, f3, f4, ncol=2)
@@ -108,18 +106,19 @@ ggarrange(f1, f2, f3, f4,
 dev.off()
 
 
-## agora pra fazer a figura 2####
+##################  agora pra fazer a figura 2  ####################
+
 #essa figura é a antiga fig 3 e 5 juntas. stacked barplots
 # pra isso tenho que fazer 2 dataframes
 
 #primeiro dataframe
-buds<-c("Aunderground", "Aunderground", "Aunderground", "Baerial", "Baerial", "Baerial", "Cbasal", "Cbasal","Cbasal")
+buds<-c( "Aerial", "Aerial", "Aerial", "Basal", "Basal","Basal", "Underground", "Underground", "Underground")
 buds1 <- as.factor(buds)
 
 strats<-c("R+PT", "R+PS", "R+P-","R+PT", "R+PS", "R+P-","R+PT", "R+PS", "R+P-" )
 strat1 <-as.factor(strats)
 
-values <- c('0.8', "0.16", "0.04", "0.89", "0.11", "0", "0.75","0.25", "0")
+values <- c( "0.89", "0.11", "0", "0.75","0.25", "0", '0.8', "0.16", "0.04")
 value1 <-as.numeric(values)
 value1 <- value1*100
 datax <- data.frame(buds1, strat1, value1)
@@ -167,9 +166,7 @@ datazz <-data.frame(gf2, straty, val4)
 g1 <-ggplot(data=datax, aes(x=buds1, y=value1, fill = strat1,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(position="stack", stat="identity")+
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
-  scale_x_discrete(limits=c("Aunderground","Baerial", "Cbasal" ),
-                   labels=c("Underground","Aerial", "Basal" ))+
-  xlab("") +
+    xlab("") +
   ylab("Proportion of species") +
   theme_classic() +
   theme (axis.text = element_text(size = 7), axis.title=element_text(size=8),
@@ -181,7 +178,7 @@ g1 <-ggplot(data=datax, aes(x=buds1, y=value1, fill = strat1,  width=.5)) + # wi
   theme(legend.position="bottom")
 g1<- g1+labs(fill ="")
 
-g2 <-ggplot(data=datay, aes(x=dorm1, y=val1, fill = strat2,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
+g2 <-ggplot(data=datay, aes(x=dorm1, y=val1, fill = strat2,  width=.35)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(position="stack", stat="identity")+
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
   xlab("") +
@@ -211,6 +208,7 @@ g2b <-ggplot(data=datay, aes(x=dorm1, y=val1, fill = strat2,  width=.5)) + # wid
   theme(legend.position="bottom")
 g2b<-g2b + labs(fill ="")
 
+#sub-shrubs separado
 g3 <-ggplot(data=dataz, aes(x=gf1, y=val3, fill = strat3,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(position="stack", stat="identity")+
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
@@ -226,7 +224,7 @@ g3 <-ggplot(data=dataz, aes(x=gf1, y=val3, fill = strat3,  width=.5)) + # width 
   theme(legend.position="bottom")
 g3<-g3+ labs(fill ="")
 
-
+#sub-shrubs junto
 g4 <-ggplot(data=datazz, aes(x=gf2, y=val4, fill = straty,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
   geom_bar(position="stack", stat="identity")+
   scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'))+
@@ -276,11 +274,13 @@ common.legend = TRUE, legend = "bottom")
 dev.off()
 
 #adding growth forms na figura
-png("figs/figura04c.png", res = 300, width = 2000, height = 1400)
-ggarrange(g1, g2, g3, labels = c("a", "b", "c"),label.x = c(0.14, 0.09, 0.14),
+#com subshrubs separado
+png("figs/figura04ca.png", res = 300, width = 2000, height = 1400)
+ggarrange(g1, g3, g2, labels = c("a", "b", "c"),label.x = c(0.14, 0.09, 0.14),
           common.legend = TRUE, legend = "bottom")
 dev.off()
 
+#shrubs e sub-shrubs juntos
 png("figs/figura04d.png", res = 300, width = 2000, height = 1400)
 ggarrange(g1, g2, g4, labels = c("a", "b", "c"),label.x = c(0.14, 0.09, 0.14),
           common.legend = TRUE, legend = "bottom")
@@ -290,7 +290,10 @@ dev.off()
 png("figs/figura05.png", res = 300, width = 1100, height = 2000)
 ggarrange(g1, g4, g2b, ncol = 1, labels = c("a", "b", "c"),label.x = c(0.14, 0.14, 0.14),common.legend = TRUE, legend = "bottom")
 dev.off()
-# agora a ultima figura#### a ultima figura ta em outro script: last_fig
+
+
+##################  agora a ultima figura    ##################
+####### OBS: a ultima figura ta em outro script -> last_fig #
 
 survived
 g4<- ggplot(data=survived, aes(x= estrategia, y=prop_ssp,  width=.5)) + # width faz a barra ficar mais fina (ou grossa)
@@ -311,19 +314,22 @@ png("figs/figura05.png", res = 300, width = 1200, height = 1000)
 grid.arrange(g4)
 dev.off()
 
-#agora a ultima figura como stacked barplot####
-#primeiro dataframe
 
-exp<-c("100-1 min", "100-1 min", "100-1 min", "100-3 min", "100-3 min", "100-3 min", "200-1 min", "200-1 min","200-1 min")
-exp1 <- as.factor(exp)
+###################agora a ultima figura como stacked barplot###################
+######### OBS: essa nao é a figura q foi pro paper. olhar script last_fig
 
-strats<-c("Stimulated", "Tolerated", "Decreased","Stimulated", "Tolerated", "Decreased","Stimulated", "Tolerated", "Decreased" )
-strat2 <-as.factor(strats)
+#primeiro o dataframe
 
-values <- c('0.02', "0.95", "0.02", "0.14", "0.77", "0.09", "0.12","0.34", "0.54")
-value2 <-as.numeric(values)
-valuex <- value2*100
-data2 <- data.frame(exp1, strat2, valuex)
+#exp<-c("100-1 min", "100-1 min", "100-1 min", "100-3 min", "100-3 min", "100-3 min", "200-1 min", "200-1 min","200-1 min")
+#exp1 <- as.factor(exp)
+
+#strats<-c("Stimulated", "Tolerated", "Decreased","Stimulated", "Tolerated", "Decreased","Stimulated", "Tolerated", "Decreased" )
+#strat2 <-as.factor(strats)
+
+#values <- c('0.02', "0.95", "0.02", "0.14", "0.77", "0.09", "0.12","0.34", "0.54")
+#value2 <-as.numeric(values)
+#valuex <- value2*100
+#data2 <- data.frame(exp1, strat2, valuex)
 
 
 #a figura:
