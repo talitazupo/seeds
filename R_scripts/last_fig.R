@@ -18,11 +18,11 @@ tali$prop<-tali$prop_sp*100
 f0 <- ggplot() +
   geom_bar(data=tali, aes(y = prop, x = trat, fill = fate), stat="identity",
            position='stack') +
-  scale_fill_manual(values=c('#CCCCCC','#666666', '#333333'), labels = c("Decreased", "Stimulated", "Unchanged"))+
+  scale_fill_manual(values=c("#E7298A", "#E6AB02", "#2171B5"), labels = c("Decreased", "Stimulated", "Unchanged"))+
   scale_x_discrete(limits=c("100-1","100-3", "200 -1" ),
                    labels=c("100°C-1 min","100°C-3 min", "200°C-1 min" ))+
   xlab("") +
-  ylab("Proportion of species") +
+  ylab("Species (%)") +
   theme_classic() +
   theme(legend.position="bottom", legend.text = element_text(size =9), legend.key.size = unit(0.35, "cm")) +
    facet_grid( ~ x)
@@ -30,7 +30,7 @@ f0 <- ggplot() +
 
   f0<- f0+labs(fill ="")
 
-  png("figs/figura6b.png", res = 300, width = 1700, height = 1100)
+  png("figs/figura6_cor2.png", res = 300, width = 1700, height = 1100)
   ggarrange(f0,
             common.legend = TRUE, legend = "bottom")
   dev.off()
