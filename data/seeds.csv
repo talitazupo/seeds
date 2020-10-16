@@ -2,11 +2,11 @@ estrategia;num_ssp;prop_ssp
 R+PT;33;80.48780488
 R+PS;7;17.07317073
 R+P-;1;2.43902439
-underground;25;60.97560976
-basal;4;9.756097561
-aerial;9;21.95121951
-dormant;16;39.02439024
-non-dormant;25;60.97560976
+Underground;26;66.7
+Basal;5;13
+Aerial;9;22.5
+Dormant;16;39.02439024
+Non-dormant;25;60.97560976
 PY;12;29.26829268
 PD;3;7.317073171
 MPD;1;2.43902439

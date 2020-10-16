@@ -1,42 +1,43 @@
-Family;Species;Growth_form;Initial_viability;Dormancy_class;Dormancy;Bud_location;Regeneration_strategy;survived_100-1;survived_100-3;survived_200
-Asteraceae;Aldama grandiflora ;Forb;56;ND;0;underground;R+PT;;;
-Asteraceae;Lessingianthus buddleiifolius ;Shrub;30;ND;0;underground;R+PT;;;
-Asteraceae;Lessingianthus floccosus ;Shrub;26;ND;0;underground;R+PT;;;
-Asteraceae;Lessingianthus hoveaefolius ;Shrub;13;ND;0;underground;R+PT;;;
-Bromeliaceae;Dyckia brasiliana ;Forb;68;ND;0;undetermined;R+PT;;;
-Calophyllaceae;Kielmeyera rubriflora ;Shrub;29;ND;0;underground;R+PT;;;
-Cyperaceae;Bulbostylis paradoxa ;Graminoid;84;ND;0;aerial;R+PT;;;
-Dilleniaceae;Davilla elliptica ;Shrub;85;MPD;1;aerial;R+PT;;;
-Fabaceae;Bauhinia dumosa;Shrub;98;ND;0;underground;R+PT;;;
-Fabaceae;Chamaecrista claussenii ;Shrub;66;PY;1;underground;R+PT;;;
-Fabaceae;Chamaecrista ochrosperma;Shrub;84;PY;1;underground;R+PT;;;
-Fabaceae;Harpalyce tombadorensis ;Shrub;51;PY;1;underground;R+PT;;;
-Fabaceae;Mimosa claussenii2 ;Shrub;80;PY;1;aerial;R+PT;;;
-Fabaceae;Mimosa kalunga;Shrub;48;PY;1;aerial;R+PS;;;
-Fabaceae;Mimosa leiocephala;Shrub;74;PY;1;underground;R+PS;;;
-Fabaceae;Mimosa pteridifolia;Shrub;60;ND;0;underground;R+P-;;;
-Fabaceae;Mimosa gracilis ;Forb;47;ND;0;underground;R+PT;;;
-Fabaceae;Mimosa;Shrub;91;PY;1;aerial;R+PT;;;
-Fabaceae;Mimosa;Shrub/Tree;100;ND;0;aerial;R+PT;;;
-Fabaceae;Senna cana;Shrub/Tree;90;PY;1;undetermined;R+PS;;;
-Fabaceae;Senna corifolia;Shrub;81;PY;1;underground;R+PT;;;
-Fabaceae;Senna silvestris;Shrub/Tree;84;PY;1;undetermined;R+PT;;;
-Fabaceae;Stylosanthes sp.;Shrub;100;PY ;1;underground;R+PS;;;
-Gentianaceae;Deianira pallescens;Forb;81;ND;0;underground;R+PT;;;
-Iridaceae;Trimezia juncifolia ;Forb;73;ND;0;underground;R+PT;;;
-Lamiaceae;Cyanocephalus coriaceus ;Sub-shrub;82;ND;0;underground;R+PT;;;
-Lamiaceae;Hypenia brachystachys ;Sub-shrub;22;ND;0;underground;R+PT;;;
-Lamiaceae;Hypenia sp.;Forb;71;ND;0;underground;R+PT;;;
-Lamiaceae;Medusantha mollissima ;Sub-shrub;66;ND;0;underground;R+PT;;;
-Lythraceae;Diplusodon punctatus ;Shrub;53;PD;1;underground;R+PS;;;
-Malvaceae;Melochia sp.;Shrub;86;PY;1;underground;R+PS;;;
-Melastomataceae;Tibouchina melastomoides;Forb;44;ND;0;underground;R+PT;;;
-Poaceae;Elionurus sp.;Graminoid;88;ND;0;basal;R+PT;;;
-Poaceae;Aristida riparia ;Graminoid;35;PD;1;basal;R+PT;;;
-Poaceae;Aristida sp. ;Graminoid;42;PD;1;basal;R+PS;;;
-Poaceae;Axonopus aureus;Graminoid;72;ND;0;underground;R+PT;;;
-Velloziaceae;Vellozia glochidea;Subshrub;99;ND;0;aerial;R+PT;;;
-Velloziaceae;Vellozia squamata;Shrub;57;ND;0;aerial;R+PT;;;
-Velloziaceae;Vellozia tubiflora;Shrub;48;ND;0;aerial;R+PT;;;
-Verbenaceae;Lippia lupulina ;Sub-shrub;25;ND;0;underground;R+PT;;;
-Xyridaceae;Xyris sp.;Graminoid;81;ND;0;basal;R+PT;;;
+Family;Species;gf;Growth_form;Initial_viability;Dormancy_class;Dormancy;Bud_location;Regeneration_strategy;survived_100-1 viab;survived_100-3 viab;survived_200 viab
+Asteraceae;Aldama grandiflora ;Forb;Forb;56;ND;0;underground;R+PT;y;y;n
+Asteraceae;Lessingianthus buddleiifolius ;Shrub;Shrub;30;ND;0;underground;R+PT;t;y;n
+Asteraceae;Lessingianthus floccosus ;Shrub;Shrub;26;ND;0;underground;R+PT;y;n;n
+Asteraceae;Lessingianthus hoveaefolius ;Shrub;Shrub;13;ND;0;underground;R+PT;y;y;y
+Bromeliaceae;Dyckia brasiliana ;Forb;Forb;68;ND;0;basal;R+PT;y;y;y
+Calophyllaceae;Kielmeyera rubriflora ;Shrub;Shrub;29;ND;0;underground;R+PT;y;y;y
+Cyperaceae;Bulbostylis paradoxa ;Graminoid;Graminoid;84;ND;0;aerial;R+PT;y;y;y
+Dilleniaceae;Davilla elliptica ;Shrub;Shrub;85;MPD;1;aerial;R+PT;y;y;n
+Fabaceae;Bauhinia dumosa;Shrub;Shrub;98;ND;0;underground;R+PT;y;y;n
+Fabaceae;Chamaecrista claussenii ;Shrub;Shrub;66;PY;1;underground;R+PT;y;n;y?
+Fabaceae;Chamaecrista ochrosperma;Shrub;Shrub;84;PY;1;underground;R+PT;y;n;n
+Fabaceae;Harpalyce tombadorensis ;Shrub;Shrub;51;PY;1;underground;R+PT;y;n;n
+Fabaceae;Mimosa claussenii2 ;Shrub;Shrub;80;PY;1;aerial;R+PT;y;y;n
+Fabaceae;Mimosa kalunga;Shrub;Shrub;48;PY;1;aerial;R+PS;y;y;n
+Fabaceae;Mimosa kalunga;Shrub;Shrub;48;PY;1;underground;R+PS;y;y;n
+Fabaceae;Mimosa leiocephala;Shrub;Shrub;74;PY;1;underground;R+PS;y;y;y
+Fabaceae;Mimosa pteridifolia;Shrub;Shrub;60;ND;0;underground;R+P-;n;;n
+Fabaceae;Mimosa gracilis ;Forb;Forb;47;ND;0;underground;R+PT;y;y;n
+Fabaceae;Mimosa;Shrub;Shrub;91;PY;1;aerial;R+PT;y;y;y
+Fabaceae;Mimosa;Shrub;Shrub;100;ND;0;aerial;R+PT;y;y;y
+Fabaceae;Senna cana;Shrub;Shrub;90;PY;1;undetermined;R+PS;y;y;y
+Fabaceae;Senna corifolia;Shrub;Shrub;81;PY;1;underground;R+PT;y;y;n
+Fabaceae;Senna silvestris;Shrub;Shrub;84;PY;1;undetermined;R+PT;y;y;n
+Fabaceae;Stylosanthes sp.;Shrub;Shrub;100;PY ;1;underground;R+PS;y;y;n
+Gentianaceae;Deianira pallescens;Forb;Forb;81;ND;0;underground;R+PT;y;y;n
+Iridaceae;Trimezia juncifolia ;Forb;Forb;73;ND;0;underground;R+PT;y;y;n
+Lamiaceae;Cyanocephalus coriaceus ;Shrub;Forb;82;ND;0;underground;R+PT;y;y;n
+Lamiaceae;Hypenia brachystachys ;Shrub;Forb;22;ND;0;underground;R+PT;y;y;y
+Lamiaceae;Hypenia sp.;Forb;Forb;71;ND;0;underground;R+PT;y;y;y
+Lamiaceae;Medusantha mollissima ;Shrub;Shrub;66;ND;0;underground;R+PT;y;y;y
+Lythraceae;Diplusodon punctatus ;Shrub;Shrub;53;PD;1;underground;R+PS;y;y;y
+Malvaceae;Melochia sp.;Shrub;Shrub;86;PY;1;underground;R+PS;y;y;n
+Melastomataceae;Tibouchina melastomoides;Forb;Forb;44;ND;0;underground;R+PT;y;y;y
+Poaceae;Elionurus sp.;Graminoid;Graminoid;88;ND;0;basal;R+PT;y;y;y
+Poaceae;Aristida riparia ;Graminoid;Graminoid;35;PD;1;basal;R+PT;y;y;y
+Poaceae;Aristida sp. ;Graminoid;Graminoid;42;PD;1;basal;R+PS;y;y;y
+Poaceae;Axonopus aureus;Graminoid;Graminoid;72;ND;0;underground;R+PT;y;y;y
+Velloziaceae;Vellozia glochidea;Shrub;Shrub;99;ND;0;aerial;R+PT;y;y;y
+Velloziaceae;Vellozia squamata;Shrub;Shrub;57;ND;0;aerial;R+PT;y;y;y
+Velloziaceae;Vellozia tubiflora;Shrub;Shrub;48;ND;0;aerial;R+PT;y;y;n
+Verbenaceae;Lippia lupulina ;Shrub;Shrub;25;ND;0;underground;R+PT;y;y;y
+Xyridaceae;Xyris sp.;Graminoid;Forb;81;ND;0;basal;R+PT;y;y;n
